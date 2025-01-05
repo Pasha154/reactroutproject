@@ -1,0 +1,43 @@
+
+.container {
+    max-width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.header-light {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: red;
+    padding: 15px;
+}
+
+.header-dark {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: darkred;
+    padding: 15px;
+}
+
+
+
+
+.li {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+
+
+.content {
+    background-color: white;
+    color: black;
+    padding: 20px;
+    margin-top: 20px;
+    flex-grow: 1;
+}
+
