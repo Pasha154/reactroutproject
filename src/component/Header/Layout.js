@@ -12,6 +12,7 @@ export default function Layout() {
             <div className={`header-${theme}`}>
                 <NavLink className='li' to='/'>Home</NavLink>
                 <NavLink className='li' to='/contacts'>Contacts</NavLink>
+                <NavLink className='li' to='/form'>Form</NavLink>
                 <NavLink className='li' to='/aboutme'>AboutMe</NavLink>
                 <button onClick={toggleTheme}>ChangeTheme</button>
             </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import TodoForm from "./TodoForm";
-import TodoList from "./TodoList";
+import TodoForm from "../../pages/TodoList/TodoForm";
+import TodoList from "../../pages/TodoList/TodoList";
 
 class TodoPage extends Component {
     constructor(props) {
