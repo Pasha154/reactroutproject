@@ -1,25 +1,18 @@
-import React, { Component } from 'react';
-import TodoItem from "./TodoItem";
+import {useDispatch}  from "react-redux";
+import {deleteTask, editTask} from "../../store_todo/slices/todoSlice";
+import "./TodoList.css";
 
-class TodoList extends Component {
-    render() {
-        console.log(this.props.todos); // Для отладки
+const List =({id, label}) => {
+    const dispatch = useDispatch();
 
-        return (
-            <div style={{ display: 'flex', gap: '10px' }}>
-                {this.props.todos.map(todo => (
-                    <TodoItem
-                        key={todo.id}
-                        todo={todo}
-                        deleteTodo={this.props.deleteTodo}
-                        toggleTodo={this.props.toggleTodo}
-                    />
-                ))}
-
-                {this.props.todos.length === 0 ? <p>TodoList is empty</p> : ''}
+    return (
+        <div className="container-todo">
+            <div className="todolist" onClick={() => dispatch(editTask({ id, label }))}>
+                {label}
             </div>
-        );
-    }
-}
+            <button onClick={() => dispatch(deleteTask(id))}>Delete</button>
+        </div>
+    );
+};
 
-export default TodoList;
+export default List;

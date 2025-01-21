@@ -1,0 +1,13 @@
+.container-todo {
+    width: 200px;
+    border: 2px solid gray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 5px;
+}
+
+.todolist{
+    margin-right: 10px;
+}

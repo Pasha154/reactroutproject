@@ -8,6 +8,8 @@ import Contacts from "./component/Header/Contacts"
 import AboutMe from "./component/Header/AboutMe"
 import {Formik} from "formik";
 import FormFormik from "./pages/Formik/FormFormik";
+import Counter from "./pages/Counter/Counter";
+import {store} from "./store_todo";
 
 function App(){
     return(
@@ -17,6 +19,7 @@ function App(){
                     <Route index element={<Home />} />
                     <Route path = '/contacts' element={<Contacts />} />
                     <Route path = '/form' element={<FormFormik />} />
+                    <Route path = '/counter' element={<Counter />} />
                     <Route path = '/aboutme' element={<AboutMe />} />
                 </Route>
             </Routes>

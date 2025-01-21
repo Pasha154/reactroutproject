@@ -1,50 +1,49 @@
-import React, { Component } from 'react';
-import TodoForm from "../../pages/TodoList/TodoForm";
-import TodoList from "../../pages/TodoList/TodoList";
+import {useSelector, useDispatch} from "react-redux";
+import {updateValue, addTask} from "../../store_todo/slices/todoSlice";
 
-class TodoPage extends Component {
-    constructor(props) {
-        super(props);
+import List from "../../pages/TodoList/TodoList";
 
-        this.state = {
-            todos: [],
-        };
-    }
+const TodoListApp = () =>{
+   const value = useSelector((state) => state.todo.inputTaskValue);
+   const todos = useSelector((state) => state.todo.todos);
+   const dispatch = useDispatch();
 
-    addTodo = (task) => {
-        const newTodo = {
-            task,
-            completed: false,
-            id: this.state.todos.length + 1,
-        };
-        this.setState({
-            todos: [...this.state.todos, newTodo],
-        });
+    const handleChange = (e) => {
+        dispatch(updateValue(e.target.value));
+};
+
+    const handleKeyEnter = (e) => {
+        if (e.key === "Enter") {
+            dispatch(addTask());
+        }
     };
 
-    deleteTodo = (id) => {
-        this.setState({
-            todos: this.state.todos.filter(todo => todo.id !== id),
-        });
-    };
-
-    toggleTodo = (id) => {
-        this.setState({
-            todos: this.state.todos.map(todo => {
-                return todo.id === id ? { ...todo, completed: !todo.completed } : todo;
-            }),
-        });
-    };
-
-    render() {
-        return (
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <h1>Todo Page</h1>
-                <TodoForm addTodo={this.addTodo} />
-                <TodoList deleteTodo={this.deleteTodo} toggleTodo={this.toggleTodo} todos={this.state.todos} />
+    return (
+        <>
+            <input
+                type="text"
+                placeholder="Enter task"
+                value={value}
+                onChange={handleChange}
+                onKeyDown={handleKeyEnter}
+            />
+            <button onClick={() => dispatch(addTask())}>Add</button>
+            <div
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    marginTop: "20px"
+                }}
+            >
+                {todos.length ? (
+                    todos.map((todo) => <List key={todo.id} {...todo} />)
+                ) : (
+                    <h3>No todos...</h3>
+                )}
             </div>
-        );
-    }
-}
+        </>
+    );
+};
 
-export default TodoPage;
+export default TodoListApp;
